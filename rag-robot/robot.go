@@ -13,10 +13,10 @@ import (
 )
 
 const (
-	APP_ID          = ""
-	APP_SECRET      = ""
-	WEI_ZAI_API_KEY = ""
-	HOST            = ""
+	APP_ID     = "" // 机器人的APP_ID
+	APP_SECRET = "" // 机器人的APP_SECRET
+	RAG_KEY    = "" // rag的key
+	HOST       = "" // rag的host
 )
 
 var Client = lark.NewClient(APP_ID, APP_SECRET)
@@ -38,7 +38,7 @@ func RobotInfer(msg string) (dao.ChatResp, string, error) {
 // 创建会话
 func CreatConversation() (string, error) {
 	var resp dao.CreatConvResp
-	get := httplib.Get(HOST+"/api/new_conversation").Header("Authorization", WEI_ZAI_API_KEY).Retries(3)
+	get := httplib.Get(HOST+"/api/new_conversation").Header("Authorization", RAG_KEY).Retries(3)
 	err := get.ToJSON(&resp)
 	if err != nil {
 		return "", err
@@ -66,7 +66,7 @@ func ChatLLm(convId, msg string) (dao.ChatResp, error) {
 	var resp dao.ChatResp
 
 	// 创建HTTP请求
-	postReq := httplib.Post(HOST+"/api/completion").Header("Authorization", WEI_ZAI_API_KEY).Retries(3)
+	postReq := httplib.Post(HOST+"/api/completion").Header("Authorization", RAG_KEY).Retries(3)
 
 	// 设置请求体
 	reqBody, err := json.Marshal(req)

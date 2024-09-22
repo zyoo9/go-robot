@@ -15,9 +15,9 @@ import (
 )
 
 const (
-	APP_VERIFICATION_TOKEN = ""
-	APP_ENCRYPT_KEY        = ""
-	ROBOT_NAME             = ""
+	APP_VERIFICATION_TOKEN = "" // 应用验证token
+	APP_ENCRYPT_KEY        = "" // 应用加密密钥
+	ROBOT_NAME             = "" // 机器人名称
 )
 
 func main() {
